@@ -1,0 +1,62 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block content %}
+
+    <div class = "row">
+        <div class = "col-md-4"></div>
+        <div class = "col-md-4">
+
+            <div class="card mt-5">
+               
+
+                <div class="card-body">
+                    <div class="card-title py-3">
+                        <h4>Login to your account</h4>
+                    </div>
+                    <form action="{% url 'login' %}" method="post">
+
+                        {% csrf_token %}
+                        {% include 'partials/_messages.html' %}
+                        
+                        <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="username" class="form-control" value="{{fieldValues.username}}" id="floatingName" placeholder="Username">
+                                    <label for="floatingInput">Username</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+
+                               
+                                <div class="d-grid gap-2 py-3">
+                                    <button type="submit" class="btn btn-lg btn-dark submit-btn">Login</button>
+                                </div>
+                        
+                        </div>  
+                    </form>
+
+                    
+                    <span class="text-lead lead">Don't have an account ?</span>
+                    <a class="btn btn-link" href="{% url 'register' %}">Register</a>
+                    <br>
+                    <span class="text-lead lead">Forgot Password ?</span>
+                    <a class="btn btn-link" href="{% url 'request-password' %}">Reset</a>
+                  
+                    
+                </div>
+
+                    
+                
+            </div>
+
+        </div>
+        <div class = "col-md-4"></div>
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+
+{% endblock %}
+
+

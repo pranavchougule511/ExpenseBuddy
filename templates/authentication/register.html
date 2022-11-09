@@ -1,0 +1,65 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block content %}
+
+    <div class = "row">
+        <div class = "col-md-4"></div>
+        <div class = "col-md-4">
+
+            <div class="card mt-5">
+               
+
+                <div class="card-body">
+                    <div class="card-title py-3">
+                        <h4>Register for a free account</h4>
+                    </div>
+                    <form action="{% url 'register' %}" method="post">
+
+                        {% csrf_token %}
+                        {% include 'partials/_messages.html' %}
+                        
+                        <div class="form-group">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="username" class="form-control" value="{{fieldValues.username}}" id="floatingName" placeholder="Username">
+                                    <label for="floatingInput">Username</label>
+                                </div>
+                                <div class="invalid-feedback username-feedback" style="display: none;"></div>
+
+                                <p class="text-sm text-success usernameSucessOutput"></p>
+
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="email" class="form-control" value="{{fieldValues.email}}" id="floatingEmail" placeholder="name@example.com">
+                                    <label for="floatingInput">Email Address</label>
+                                </div>
+                                <div class="invalid-feedback email-feedback" style="display: none;"></div>
+                                <p class="text-sm text-success emailSucessOutput"></p>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+
+                               
+                                <div class="d-grid gap-2 py-3">
+                                    <button type="submit" class="btn btn-lg btn-dark submit-btn">Register</button>
+                                </div>
+                        
+                        </div>  
+                    </form>
+                    <span class="text-lead lead">Already have an account ?</span>
+                    <a class="btn btn-link" href="{% url 'login' %}">Login</a>
+                </div>
+
+                    
+                
+            </div>
+
+        </div>
+        <div class = "col-md-4"></div>
+    </div>
+
+    <script src="{% static 'js/register.js' %}"></script>
+
+{% endblock %}
+
+

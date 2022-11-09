@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-5">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'income' %}">Income</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Edit Income
+          </li>
+        </ol>
+      </nav>
+  
+
+  <div class="card col-md-6">
+    <div class="card-body">
+      <form action="{% url 'income-edit' income.id %}" method="post">
+        {% include 'partials/_messages.html'%} {% csrf_token %}
+        <div class="form-group mb-3">
+          <label for="" class="form-label mt-4">Amount</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="amount"
+            value="{{values.amount}}"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label mt-4">Description</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            name="description"
+            value="{{values.description}}"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label mt-4">Source</label>
+          <select class="form-control" name="source">
+            <option selected name="source" value="{{values.source}}"
+              >{{values.source}}</option
+            >
+            {% for source in sources%}
+            <option name="source" value="{{source.name}}"
+              >{{source.name}}</option
+            >
+
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <label for="" class="form-label mt-4">Date of Income</label>
+          <input
+            type="date"
+            value="{{values.date | date:'Y-m-d' }}"
+            class="form-control form-control-sm"
+            name="income_date"
+          />
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-dark"/>
+        <a class="btn btn-danger" href="{% url 'income-delete' income.id %}" role="button">Delete</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

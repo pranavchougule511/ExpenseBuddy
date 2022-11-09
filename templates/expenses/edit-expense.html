@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'expenses'%}">Expenses</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Edit Expenses</li>
+        </ol>
+    </nav>
+    
+    <div class="card col-md-6" >
+        <div class="card-body">
+          <form action="{% url 'edit-expense' expense.id %}" method="post">
+            {% include 'partials/_messages.html'%} 
+            {% csrf_token %}
+            <div class="form-group mb-3">
+              <label for="" class="form-label mt-4">Amount</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                name="amount"
+                placeholder="Amount"
+                value="{{values.amount}}"
+              />
+            </div>
+            
+            <div class="form-group mb-3">
+              <label for="" class="form-label mt-4">Description</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                name="description"
+                placeholder="Description"
+                value="{{values.description}}"
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="" class="form-label mt-4">Category</label>
+              <select class="form-control" name="category">
+                <option selected name="category" value="{{values.category}}">
+                    {{values.category}}
+                </option>
+                {% for category in categories %}
+                <option name="category" value="{{category.name}}">
+                    {{category.name}}
+                </option>
+    
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="" class="form-label mt-4">Date of Expense</label>
+              <input
+                type="date"
+                value="{{values.date |date:'Y-m-d' }}"
+                class="form-control form-control-sm"
+                name="expense_date"
+              />
+            </div>
+            
+            <input type="submit" value="Save" class="btn btn-dark"/>
+            <a class="btn btn-danger" href="{% url 'delete-expense' expense.id %}" role="button">Delete</a>
+          </form>
+        </div>
+      </div>
+
+
+</div>
+
+
+    
+{% endblock %}
+
