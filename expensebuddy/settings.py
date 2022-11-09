@@ -15,8 +15,8 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()
-import django_heroku
-import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,7 +36,6 @@ ALLOWED_HOSTS = ['expensebuddyz.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -94,9 +93,6 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -139,8 +135,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'expensebuddy/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-
-django_heroku.settings(locals())
 
 
 MESSAGE_TAGS = {
