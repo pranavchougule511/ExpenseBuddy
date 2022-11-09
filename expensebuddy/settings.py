@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-el(n975azm2s1uoj3$bub!l)fl)b1gjwno=g75*w!l$zxbnju!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['expensebuddyz.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['expense-buddy.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
